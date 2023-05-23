@@ -14,4 +14,4 @@ streamlit_pandas_profiling
 folium
 lxml
 requests
-BeautifulSoup
+BeautifulSoup4

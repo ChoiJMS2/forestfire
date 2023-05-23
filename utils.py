@@ -7,7 +7,7 @@ import pandas as pd
 import time
 import math
 
-@st.cache_data
+@st.cache
 def load_data():
     comp_dir = Path('data/')
 

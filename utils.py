@@ -1,13 +1,16 @@
 # -*- coding:utf-8 -*-
 
+
 import lxml
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from pathlib import Path
+import streamlit as st
 import time
 import math
 
-@st.cache
+@st.cache_data
 def load_data():
     comp_dir = Path('data/')
 

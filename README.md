@@ -94,3 +94,5 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
+
+## 9. 주요 업데이트 내용

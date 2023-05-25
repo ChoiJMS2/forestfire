@@ -63,11 +63,15 @@ EDA 시나리오 :
 --> 지역 먼저 선정 후 진행
 
 5/25
-진행 사항
+Today complete list
+- 데이터 정리 및 전처리 (결측치, 이상치 제거)
+- 데이터 Feature 선정
+- ERD 작성
+- PPT 목차 정리
 
-미흡 사항
-
-다음 목표
+To do list
+- EDA 계속 진행
+- Streamlit 틀 작성
 
 5/26
 진행 사항

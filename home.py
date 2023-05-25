@@ -1,0 +1,36 @@
+# -*- coding:utf-8 -*-
+
+import streamlit as st
+from PIL import Image
+
+def run_home():
+    """
+        Renders the introduction section of the app, including tabs for overview, objectives, and analysis phases.
+    """
+    tab1, tab2, tab3 = st.tabs(["**Introduction**", "**Goals**", "**Analysis**"])
+    with tab1:
+        st.subheader(":white_check_mark: 소개넣기")
+        st.markdown(
+            "Member|Skills|GitHub & Blog \n |:--:|:--:|:--:| \n |Beom-Mo Kim|-------- | ![git](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJVyru%2FbtseBexHPj3%2FVcOibIVPqoCkgLTA8mpP61%2Fimg.png) : ----- ![blog](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ftc61f%2FbtseGWwjM0C%2FD4Su9TE8awMKMdyhstKAO0%2Fimg.jpg) : -----| \n |Sang-Il Bae|------- | ![git](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJVyru%2FbtseBexHPj3%2FVcOibIVPqoCkgLTA8mpP61%2Fimg.png) : ----- ![blog](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ftc61f%2FbtseGWwjM0C%2FD4Su9TE8awMKMdyhstKAO0%2Fimg.jpg) : -----| \n |Yeol-Min Sung| -------| ![git](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJVyru%2FbtseBexHPj3%2FVcOibIVPqoCkgLTA8mpP61%2Fimg.png) : ----- ![blog](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ftc61f%2FbtseGWwjM0C%2FD4Su9TE8awMKMdyhstKAO0%2Fimg.jpg) : -----| \n |Sung-Jun Oh|------- | ![git](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJVyru%2FbtseBexHPj3%2FVcOibIVPqoCkgLTA8mpP61%2Fimg.png) : ----- ![blog](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ftc61f%2FbtseGWwjM0C%2FD4Su9TE8awMKMdyhstKAO0%2Fimg.jpg) : -----| \n |Gwang-Hyeon Yim | -------|![git](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJVyru%2FbtseBexHPj3%2FVcOibIVPqoCkgLTA8mpP61%2Fimg.png) : ----- ![blog](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ftc61f%2FbtseGWwjM0C%2FD4Su9TE8awMKMdyhstKAO0%2Fimg.jpg) : -----| \n |Jae-Myoung Choi|------- | ![git](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FJVyru%2FbtseBexHPj3%2FVcOibIVPqoCkgLTA8mpP61%2Fimg.png) : https://github.com/ChoiJMS2m  ![blog](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ftc61f%2FbtseGWwjM0C%2FD4Su9TE8awMKMdyhstKAO0%2Fimg.jpg) : https://james-choi88.tistory.com|")
+        st.markdown("### Analytic Language & Tools")
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            img1 = Image.open("img/pycharm.png")
+            st.image(img1, width=300)
+
+        with col2:
+            img2 = Image.open("img/python.png")
+            st.image(img2, width=300)
+
+        with col3:
+            img3 = Image.open("img/streamlit.png")
+            st.image(img3, width=300)
+        with col4:
+            img3 = Image.open("img/openapi.PNG")
+            st.image(img3, width=300)
+
+    with tab2:
+        st.subheader(":white_check_mark: 프로젝트 목표")
+    with tab3:
+        st.subheader(":white_check_mark: 분석방향")
+

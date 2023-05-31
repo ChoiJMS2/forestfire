@@ -42,6 +42,8 @@ def run_home():
         st.subheader(":white_check_mark: 프로젝트 목표")
         img5 = Image.open("img/bp.png")
         st.image(img5)
+        st.subheader(":white_check_mark: 주요 설정 지수")
+        st.subheader(":white_check_mark: 평가 지표")
 
     with tab3:
         st.subheader(":white_check_mark: 프로젝트 순서도")

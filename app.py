@@ -10,6 +10,8 @@ def main():
     """
     st.set_page_config(page_title="Minimize forest fire damage", page_icon=":🔥:",
                             layout = "wide", initial_sidebar_state="expanded")
+
+    st.header(":fire: 산불 피해 최소화 :firefighter:")
     # Streamlit 앱 실행
     with st.sidebar:
         selected = option_menu("Main Menu", ['Home', 'Data', 'EDA', 'STAT', 'ML'],

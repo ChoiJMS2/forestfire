@@ -15,3 +15,6 @@ folium
 lxml
 requests
 BeautifulSoup4
+geopandas
+jupyterlab
+pandas-gbq

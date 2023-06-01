@@ -26,18 +26,22 @@ def run_query(cols,table_id):
     st.dataframe(df)
 
 def load_data1():
-    tableNames = st.selectbox("Table", ('combin_forest_fire',''))
+    st.subheader("Table")
+    tableNames = st.selectbox("Table", ('combin_forest_fire','Nothing'), label_visibility='collapsed')
     if tableNames == 'combin_forest_fire':
-        query = """
+        project_id = 'forestfire-388501'
+        dataset_id = 'combin_forest_fire'
+        query = f"""
             SELECT STRING_AGG(column_name)
-            FROM `forestfire-388501.combin_forest_fire.combin_forest_fire.INFORMATION_SCHEMA.COLUMNS`
+            FROM `{project_id}.{dataset_id}.INFORMATION_SCHEMA.COLUMNS`
             """
 
         df = client.query(query).to_dataframe()
         all_cols = df.values[0][0].split(",")
-        columns = st.multiselect("컬럼명 선택", all_cols, default=all_cols)
+        st.subheader("Select Columns")
+        columns = st.multiselect("컬럼명 선택", all_cols, default=all_cols, label_visibility='collapsed')
         temp_Strings = ", ".join(columns)
-        load_data1(temp_Strings,tableNames)
+        run_query(temp_Strings,tableNames)
     else:
         st.warning("please select table")
 

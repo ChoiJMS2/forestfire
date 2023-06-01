@@ -35,8 +35,10 @@ def main():
     elif selected == 'EDA':
         run_eda()
     elif selected == 'STAT':
-        load_data1()
+        st.markdown("## 분석 내용 넣기")
+        pass
     elif selected == 'ML':
+        st.markdown("## ML, DL 넣기")
         pass
     else:
         print('error..')

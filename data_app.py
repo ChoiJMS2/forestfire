@@ -9,6 +9,7 @@ import utils
 from google.cloud import bigquery
 from streamlit_pandas_profiling import st_profile_report
 from data import load_data
+from testdata import load_data1
 
 @st.cache_data(ttl=600)
 def run_erd():
@@ -46,6 +47,9 @@ def run_data2():
 def run_data3():
     load_data()
 
+def run_data4():
+    load_data1()
+
 def appendix():
     st.subheader(":white_check_mark: Codebook")
     st.markdown("**데이터 정의서**")
@@ -55,8 +59,8 @@ def appendix():
         ('첨부1 : 코드 목록', '첨부2 : 지점 번호', '첨부3 : 뭐 이런것들?'))
 
 def run_data():
-
-    Data_List = st.sidebar.radio("Select Data", ['ERD', 'Data1', 'Data2', 'Data3', 'Appendix'])
+    st.sidebar.markdown("## Select Data")
+    Data_List = st.sidebar.radio(" ", ['ERD', 'Data1', 'Data2', 'Data3', 'Data4','Appendix'], label_visibility='collapsed')
     if Data_List == 'ERD':
         st.markdown("## ERD")
         run_erd()
@@ -67,5 +71,8 @@ def run_data():
     elif Data_List == 'Data3':
         st.markdown("## Data3 Int")
         run_data3()
+    elif Data_List == 'Data4':
+        st.markdown("## Data4 Int")
+        run_data4()
     elif Data_List == 'Appendix':
         appendix()

@@ -7,21 +7,16 @@ from plotly.subplots import make_subplots
 
 import streamlit as st
 from pathlib import Path
-from page import page_group
+
 
 def run_eda():
-    page = page_group("p")
-    with st.sidebar:
-        chart1 = page.item("Chart1")
-        chart2 = page.item("Chart2")
-        chart3 = page.item("Chart3")
-
-    if chart1:
-        st.subheader("chart1")
-    elif chart2:
-        st.subheader("chart2")
-    elif chart3:
-        st.subheader("chart3")
-    else:
-        st.error("Please Check to Chart")
-    page.show()
+    st.sidebar.markdown("## Exploration for Data")
+    eda = st.sidebar.radio('',['Chart1', 'Chart2', 'Chart3', 'Chart4'], label_visibility='collapsed')
+    if eda == 'Chart1':
+        st.markdown("## Chart1")
+    elif eda == 'Chart2':
+        st.markdown("## Chart2")
+    elif eda == 'Chart3':
+        st.markdown("## Chart3")
+    elif eda == 'Chart4':
+        st.markdown("## Chart4")

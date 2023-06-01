@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-import utils
+# import utils
 from google.cloud import bigquery
 from streamlit_pandas_profiling import st_profile_report
 from data import load_data

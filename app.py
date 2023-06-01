@@ -2,8 +2,10 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 from home import run_home
-from data import run_data
+from data_app import run_data
 from eda.eda import run_eda
+from data import load_data
+from testdata import load_data1
 
 def main():
     """
@@ -33,7 +35,7 @@ def main():
     elif selected == 'EDA':
         run_eda()
     elif selected == 'STAT':
-        pass
+        load_data1()
     elif selected == 'ML':
         pass
     else:

@@ -1,69 +1,26 @@
-# -*- coding: utf-8 -*-
+# 데이터 탭
+# 라이브러리
 import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-import utils
+import glob
 from google.cloud import bigquery
-from streamlit_pandas_profiling import st_profile_report
+from utils import credentials
+@st.cache_data(ttl=600)
+def load_data():
 
-def run_erd():
-    pass
-
-def run_data1():
+    # 빅쿼리 클라이언트 객체 생성
+    client = bigquery.Client(credentials=credentials, project=credentials.project_id)
+    # 쿼리 작성
+    project_id = 'forestfire-388501'
+    dataset_id = 'combin_forest_fire'
+    table_id = 'combin_forest_fire'
+    query = f"""
+    SELECT *
+    FROM `{project_id}.{dataset_id}.{table_id}`
     """
-       Display the dataframe, data types, and describe statistics in a Streamlit-style format.
-
-       :param dataframe: The input dataframe.
-       :return: None
-    """
-    st.subheader("📝[Data1] Data Description")
-    col1, col2 = st.columns([3, 2])
-    with col1:
-        st.title("📣 Data")
-#        st.dataframe(dataframe, height=810, width=1200)
-
-    with col2:
-        st.title("📣 Describe")
-#        st.dataframe(dataframe.describe(), height=350, width=650)
-    with st.expander("Report"):
-        st.markdown("Report")
-#                pr = data1.profile_report()
-#                st_profile_report(pr)
-def run_data2():
-    tab1, tab2, tab3 = st.tabs(["**📝Description**", "**📣 Data**", "**📊 Report**"])
-    with tab1:
-        st.title("📝[Data1] Data Description")
-    with tab2:
-        st.title("📣 Data")
-    with tab3:
-        with st.expander("Report"):
-            st.markdown("Report")
-def run_data3():
-    pass
-
-def appendix():
-    st.subheader(":white_check_mark: Codebook")
-    st.markdown("**데이터 정의서**")
-    st.subheader(":white_check_mark: 부록")
-    option = st.selectbox(
-        "#### 첨부 목록",
-        ('첨부1 : 코드 목록', '첨부2 : 지점 번호', '첨부3 : 뭐 이런것들?'))
-
-def run_data():
-
-    Data_List = st.sidebar.radio("Select Data", ['ERD', 'Data1', 'Data2', 'Data3', 'Appendix'])
-    if Data_List == 'ERD':
-        st.markdown("## ERD")
-        run_erd()
-    elif Data_List == 'Data1':
-        run_data1()
-    elif Data_List == 'Data2':
-        run_data2()
-    elif Data_List == 'Data3':
-        st.markdown("## Data3 Int")
-        run_data3()
-    elif Data_List == 'Appendix':
-        appendix()
+    # 쿼리 실행 및 결과를 데이터프레임으로 변환
+    df = client.query(query).to_dataframe()
+    # 데이터프레임 출력
+    st.dataframe(df)
+    # Streamlit 애플리케이션 실행
+    if __name__ == '__main__':
+        load_data()

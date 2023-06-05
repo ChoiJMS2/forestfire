@@ -10,6 +10,8 @@ from google.cloud import bigquery
 from streamlit_pandas_profiling import st_profile_report
 from data import load_data
 from data1 import load_data1
+from utils import credentials
+
 
 @st.cache_data(ttl=600)
 def run_erd():
@@ -49,7 +51,39 @@ def run_data3():
 
 def run_data4():
     load_data1()
+def run_data_list():
 
+    # BigQuery 클라이언트 생성
+    client = bigquery.Client(credentials=credentials, project=credentials.project_id)
+    # # 데이터셋 목록 조회
+    st.markdown("#### Data Set List")
+    # 데이터셋 목록 가져오기
+    datasets = list(client.list_datasets())
+    # 데이터셋 목록을 담을 빈 리스트
+    dataset_list = []
+    # 각 데이터셋에 대해 데이터셋 ID를 가져와 리스트에 추가
+    for dataset in datasets:
+        dataset_list.append(dataset.dataset_id)
+    a = pd.DataFrame([{"DataSet List" : [dataset_list[0], dataset_list[1], dataset_list[2]] }])
+    st.dataframe(a)
+    # 특정 데이터셋의 테이블 목록 조회
+    st.markdown("#### Data Table List")
+    dataset_list = st.selectbox("Table", ('combin_forest_fire','forest_fire', 'gangwon'), label_visibility='collapsed') # 원하는 데이터셋 ID로 변경
+    if dataset_list == 'combin_forest_fire':
+        dataset_id = dataset_list
+        tables = list(client.list_tables(dataset_id))
+        for table in tables:
+            st.write(table.table_id)
+    elif dataset_list == 'forest_fire':
+        dataset_id = dataset_list
+        tables = list(client.list_tables(dataset_id))
+        for table in tables:
+            st.write(table.table_id)
+    elif dataset_list == 'gangwon':
+        dataset_id = dataset_list
+        tables = list(client.list_tables(dataset_id))
+        for table in tables:
+            st.write(table.table_id)
 def appendix():
     st.subheader(":white_check_mark: Codebook")
     st.markdown("**데이터 정의서**")
@@ -60,7 +94,7 @@ def appendix():
 
 def run_data():
     st.sidebar.markdown("## Select Data")
-    Data_List = st.sidebar.radio(" ", ['ERD', 'Data1', 'Data2', 'Data3', 'Data4','Appendix'], label_visibility='collapsed')
+    Data_List = st.sidebar.radio(" ", ['ERD', 'Data List', 'Data1', 'Data2', 'Data3', 'Data4','Appendix'], label_visibility='collapsed')
     if Data_List == 'ERD':
         st.markdown("## 📝 Data Tab 설명")
         st.markdown("### ERD")
@@ -76,6 +110,8 @@ def run_data():
         st.markdown("### Appendix")
         st.write("부록")
         run_erd()
+    elif Data_List == 'Data List':
+        run_data_list()
     elif Data_List == 'Data1':
         run_data1()
     elif Data_List == 'Data2':

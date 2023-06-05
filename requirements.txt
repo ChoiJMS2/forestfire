@@ -10,6 +10,7 @@ pandas-profiling
 streamlit
 streamlit-option-menu
 streamlit_pandas_profiling
+streamlit_folium
 
 folium
 lxml

@@ -18,9 +18,9 @@ def load_data():
     FROM `{project_id}.{dataset_id}.{table_id}`
     """
     # 쿼리 실행 및 결과를 데이터프레임으로 변환
-    df = client.query(query).to_dataframe()
+    combined_df = client.query(query).to_dataframe()
     # 데이터프레임 출력
-    st.dataframe(df)
+    st.dataframe(combined_df)
     # Streamlit 애플리케이션 실행
     if __name__ == '__main__':
         load_data()

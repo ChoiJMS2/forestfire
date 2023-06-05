@@ -6,6 +6,7 @@ from data_app import run_data
 from eda.eda import run_eda
 from data import load_data
 from data1 import load_data1
+from stats import run_stat
 
 def main():
     """
@@ -36,6 +37,7 @@ def main():
         run_eda()
     elif selected == 'STAT':
         st.markdown("## 분석 내용 넣기")
+        run_stat()
         pass
     elif selected == 'ML':
         st.markdown("## ML, DL 넣기")

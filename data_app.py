@@ -45,12 +45,10 @@ def run_data2():
         with st.expander("Report"):
             st.markdown("Report")
 def run_data3():
-    pass
-#    load_data()
+    load_data()
 
 def run_data4():
-    pass
-#    load_data1()
+    load_data1()
 
 def appendix():
     st.subheader(":white_check_mark: Codebook")

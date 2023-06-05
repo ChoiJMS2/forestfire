@@ -8,8 +8,6 @@ import plotly.express as px
 # import utils
 from google.cloud import bigquery
 from streamlit_pandas_profiling import st_profile_report
-from data import load_data
-from testdata import load_data1
 
 @st.cache_data(ttl=600)
 def run_erd():
@@ -45,10 +43,12 @@ def run_data2():
         with st.expander("Report"):
             st.markdown("Report")
 def run_data3():
-    load_data()
+    pass
+#    load_data()
 
 def run_data4():
-    load_data1()
+    pass
+#    load_data1()
 
 def appendix():
     st.subheader(":white_check_mark: Codebook")

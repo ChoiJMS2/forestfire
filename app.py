@@ -4,8 +4,6 @@ from streamlit_option_menu import option_menu
 from home import run_home
 from data_app import run_data
 from eda.eda import run_eda
-from data import load_data
-from data1 import load_data1
 from stats import run_stat
 
 def main():

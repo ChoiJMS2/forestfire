@@ -14,6 +14,8 @@ from data import load_data
 from google.cloud import bigquery
 from utils import credentials
 
+from map import run_map
+
 @st.cache_data(ttl=600)
 def run_heatmap():
     # 빅쿼리 클라이언트 객체 생성
@@ -37,7 +39,7 @@ def run_heatmap():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
 def run_chart2():
-    pass
+    run_map()
 def run_chart3():
     pass
 def run_chart4():

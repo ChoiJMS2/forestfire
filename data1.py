@@ -1,7 +1,6 @@
 # 데이터 탭
 # 라이브러리
 import streamlit as st
-import glob
 from google.cloud import bigquery
 from utils import credentials
 

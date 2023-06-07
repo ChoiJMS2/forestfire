@@ -23,14 +23,14 @@ from utils import credentials
 from streamlit_folium import st_folium
 import pyproj
 import plotly.graph_objs as go
-
+@st.cache_data(ttl=600)
 def run_map():
     # 빅쿼리 클라이언트 객체 생성
     client = bigquery.Client(credentials=credentials, project=credentials.project_id)
     # 쿼리 작성
     query = """
      SELECT *
-     FROM `forestfire-388501.gangwon.gangwon_code`
+     FROM `forestfire-389107.Raw_Data.gangwon_code`
      """
     # 쿼리 실행 및 결과를 데이터프레임으로 변환
     gangwon_code = client.query(query).to_dataframe()
@@ -38,12 +38,10 @@ def run_map():
     # 쿼리 작성
     query1 = """
      SELECT *
-     FROM `forestfire-388501.gangwon.weather_stations`
+     FROM `forestfire-389107.PreProcessing_Data.weather_stations`
      """
     # 쿼리 실행 및 결과를 데이터프레임으로 변환
     weather_stations = client.query(query1).to_dataframe()
-    weather_stations = weather_stations[
-        weather_stations["stnAddress"].str.contains("강원도") & weather_stations["endDate"].isna()]
     weather_stations = weather_stations.reset_index(drop=True)
 
     map = folium.Map(location=[37.55, 128], zoom_start=8)

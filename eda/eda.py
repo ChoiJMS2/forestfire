@@ -13,17 +13,19 @@ import matplotlib.pyplot as plt
 from data import load_data
 from google.cloud import bigquery
 from utils import credentials
-
 from map import run_map
+
+import folium
+from streamlit_folium import st_folium
 
 @st.cache_data(ttl=600)
 def run_heatmap():
     # 빅쿼리 클라이언트 객체 생성
     client = bigquery.Client(credentials=credentials, project=credentials.project_id)
     # 쿼리 작성
-    project_id = 'forestfire-388501'
-    dataset_id = 'combin_forest_fire'
-    table_id = 'combin_forest_fire'
+    project_id = 'forestfire-389107'
+    dataset_id = 'PreProcessing_Data'
+    table_id = 'weather_stations'
     query = f"""
     SELECT *
     FROM `{project_id}.{dataset_id}.{table_id}`
@@ -41,7 +43,14 @@ def run_heatmap():
 def run_chart2():
     run_map()
 def run_chart3():
-    pass
+    # center on Liberty Bell, add marker
+    m = folium.Map(location=[37.5666805, 126.9784147], zoom_start=13)
+    folium.Marker(
+        [37.5666805, 126.9784147], popup="Liberty Bell", tooltip="Liberty Bell"
+    ).add_to(m)
+
+    # call to render Folium map in Streamlit
+    st_folium(m, width=725)
 def run_chart4():
     pass
 

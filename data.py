@@ -10,9 +10,9 @@ def load_data():
     # 빅쿼리 클라이언트 객체 생성
     client = bigquery.Client(credentials=credentials, project=credentials.project_id)
     # 쿼리 작성
-    project_id = 'forestfire-388501'
-    dataset_id = 'combin_forest_fire'
-    table_id = 'combin_forest_fire'
+    project_id = 'forestfire-389107'
+    dataset_id = 'PreProcessing_Data'
+    table_id = 'weather_stations'
     query = f"""
     SELECT *
     FROM `{project_id}.{dataset_id}.{table_id}`

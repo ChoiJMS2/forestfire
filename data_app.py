@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
 # import utils
 from google.cloud import bigquery
 from streamlit_pandas_profiling import st_profile_report
@@ -64,18 +68,21 @@ def run_data_list():
     st.dataframe(a)
     # 특정 데이터셋의 테이블 목록 조회
     st.markdown("#### Data Table List")
-    dataset_list = st.selectbox("Table", ('combin_forest_fire','forest_fire', 'gangwon'), label_visibility='collapsed') # 원하는 데이터셋 ID로 변경
-    if dataset_list == 'combin_forest_fire':
+    dataset_list = st.selectbox("Table", ('Analysis_Data','PreProcessing_Data', 'Raw_Data'), label_visibility='collapsed') # 원하는 데이터셋 ID로 변경
+    if dataset_list == 'Analysis_Data':
+        st.write("Table List")
+        dataset_id = dataset_list
+        tables = list(client.list_tables(dataset_id))
+        datatable_list = []
+        for table in tables:
+            datatable_list.append(table.table_id)
+        st.radio("",[datatable_list[:]], label_visibility='collapsed')
+    elif dataset_list == 'PreProcessing_Data':
         dataset_id = dataset_list
         tables = list(client.list_tables(dataset_id))
         for table in tables:
             st.write(table.table_id)
-    elif dataset_list == 'forest_fire':
-        dataset_id = dataset_list
-        tables = list(client.list_tables(dataset_id))
-        for table in tables:
-            st.write(table.table_id)
-    elif dataset_list == 'gangwon':
+    elif dataset_list == 'Raw_Data':
         dataset_id = dataset_list
         tables = list(client.list_tables(dataset_id))
         for table in tables:

@@ -68,11 +68,15 @@ def run_twoMeans():
     else:
         st.warning("Two Columns are must be different")
 
+def run_regression():
+    pass
+
 def run_stat():
     st.sidebar.markdown("## Select Data")
-    submenu = st.sidebar.selectbox("Submenu", ['Two Means', 'Nothing'], label_visibility='collapsed')
+    submenu = st.sidebar.selectbox("Submenu", ['Two Means', 'Logistic Regression'], label_visibility='collapsed')
     if submenu == 'Two Means':
         st.markdown("## Two Means")
         run_twoMeans()
-    elif submenu == 'Nothing':
+    elif submenu == 'Logistic Regression':
         st.warning("please Analysis")
+        run_regression()

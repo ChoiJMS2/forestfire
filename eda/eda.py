@@ -36,16 +36,28 @@ def run_heatmap():
     plt.title('Correlation Heatmap')
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
+def run_chart2():
+    pass
+def run_chart3():
+    pass
+def run_chart4():
+    pass
 
 def run_eda():
     st.sidebar.markdown("## Exploration for Data")
-    eda = st.sidebar.radio('',['Chart1', 'Chart2', 'Chart3', 'Chart4'], label_visibility='collapsed')
+    eda = st.sidebar.radio('submenu',['Chart1', 'Chart2', 'Chart3', 'Chart4'], label_visibility='collapsed')
     if eda == 'Chart1':
         st.markdown("## Chart1")
         run_heatmap()
     elif eda == 'Chart2':
         st.markdown("## Chart2")
+        st.warning("please EDA")
+        run_chart2()
     elif eda == 'Chart3':
         st.markdown("## Chart3")
+        st.warning("please EDA")
+        run_chart3()
     elif eda == 'Chart4':
         st.markdown("## Chart4")
+        st.warning("please EDA")
+        run_chart4()

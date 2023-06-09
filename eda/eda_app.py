@@ -5,14 +5,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from google.cloud import bigquery
 from utils import credentials
-from eda.map import run_map
 
 import folium
 
 def run_chart1():
     pass
 def run_chart2():
-    run_map()
+    pass
 def run_chart3():
     pass
 def run_chart4():
@@ -23,6 +22,7 @@ def run_eda():
     eda = st.sidebar.radio('submenu',['Chart1', 'Chart2', 'Chart3', 'Chart4'], label_visibility='collapsed')
     if eda == 'Chart1':
         st.markdown("## Chart1")
+        st.warning("please EDA")
         run_chart1()
     elif eda == 'Chart2':
         st.markdown("## Chart2")

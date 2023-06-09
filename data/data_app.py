@@ -32,6 +32,10 @@ def appendix():
     option = st.selectbox(
         "#### 첨부 목록",
         ('첨부1 : 코드 목록', '첨부2 : 지점 번호', '첨부3 : 뭐 이런것들?'))
+    if option == '첨부2 : 지점 번호':
+        st.image("img/WSN.png")
+    else:
+        pass
 
 def run_data():
     st.sidebar.markdown("## SubMenu")

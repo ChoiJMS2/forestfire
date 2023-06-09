@@ -2,7 +2,6 @@
 import pandas as pd
 import streamlit as st
 from utils import credentials
-from data import load_data
 
 from statsmodels.tsa.stattools import adfuller
 import plotly.express as px
@@ -71,9 +70,9 @@ def run_twoMeans():
 def run_regression():
     pass
 
-def run_stat():
-    st.sidebar.markdown("## Select Data")
-    submenu = st.sidebar.selectbox("Submenu", ['Two Means', 'Logistic Regression'], label_visibility='collapsed')
+def run_stats():
+    st.sidebar.markdown("## SubMenu")
+    submenu = st.sidebar.radio("Submenu", ['Two Means', 'Logistic Regression'], label_visibility='collapsed')
     if submenu == 'Two Means':
         st.markdown("## Two Means")
         run_twoMeans()

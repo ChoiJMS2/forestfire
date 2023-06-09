@@ -39,16 +39,46 @@ def run_home():
 
 
     with tab2:
-        st.subheader(":white_check_mark: 프로젝트 목표")
+        st.header(":white_check_mark: 프로젝트 목표")
         img5 = Image.open("img/bp.png")
         st.image(img5)
-        st.subheader(":white_check_mark: 주요 설정 지수")
-        st.subheader(":white_check_mark: 평가 지표")
+        st.markdown("\n")
+        st.header(":white_check_mark: 주요 설정 지수")
+        col6, col7, col8 = st.columns(3, gap="medium")
+        with col6:
+            st.markdown("#### 🌡️ 실효 습도")
+            st.markdown("**✔** 목재 건조도 or **:red[화재 위험성을 나타내는 지수]**")
+            st.markdown("**✔** 수 일간 상대습도에 **:red[가중치를 적용]** 하여 산출하는 **:red[평균습도]**")
+            st.markdown("       👉 일반적으로 당일 포함,  **:red[5일 간의 평균 상대 습도]** 의 누적치")
+            st.markdown("**✔** 실효 습도가 **:red[50% 이하]** 가 되면 대형 화재 위험성 🔺")
+            st.image("img/Effective_humidity.png")
+        with col7:
+            st.markdown("#### 🔥 산불 위험 등급")
+            st.markdown("**✔ :red[산불위험지수 산출]** 에 필요한 정보 : ")
+            st.markdown("**👉 기상요인 : :blue[기온, 상대습도, 실효습도, 풍속, 강수량]**")
+            st.markdown("**📌** 1~100 까지의 지수를 산출 → **:red[4단계 산불위험등급]** (매우높음, 높음, 보통, 낮음) 으로 구분")
+            st.image("img/FFRR.png")
+
+        with col8:
+            st.markdown("#### 🔥️ 산불 위험 지수(DWI)")
+            st.image("img/FFRI.PNG")
+
+        st.markdown("\n")
+        st.header(":white_check_mark: 평가 지표")
+        col9, col10 = st.columns(2)
+        with col9:
+            st.image("img/map.png")
+        with col10:
+            st.image("img/Spatial_Info.png")
+        st.image("img/LR.png")
+        st.image("img/model_Evaluation.png")
 
     with tab3:
-        st.subheader(":white_check_mark: 프로젝트 순서도")
+        st.header(":white_check_mark: 프로젝트 순서도")
         img6 = Image.open("img/workflow.png")
         st.image(img6)
 
-        st.subheader(":white_check_mark: 분석방향")
+        st.header(":white_check_mark: 분석방향")
+        st.image("img/LR.png")
+        st.image("img/model_Evaluation.png")
 

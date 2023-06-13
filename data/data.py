@@ -1,8 +1,6 @@
 # -*- coding:utf-8 -*-
-# 데이터 탭
-# 라이브러리
+# 전체 데이터 로드
 import streamlit as st
-import glob
 from google.cloud import bigquery
 from utils import credentials
 

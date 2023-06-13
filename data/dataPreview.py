@@ -76,7 +76,7 @@ def run_data_preview():
             st.markdown("#### Select Columns")
             columns = st.multiselect("컬럼명 선택", all_cols, default=all_cols, label_visibility='collapsed')
             temp_Strings = ", ".join(columns)
-            run_query(temp_Strings, dataset_id ,tablenames)
+            run_query(temp_Strings, dataset_id, tablenames)
         else :
             st.warning("error")
 

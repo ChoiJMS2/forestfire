@@ -21,7 +21,7 @@ def temp_chart():
     df2 = df2.groupby('w_regions')
 
     # x축 레이블과 범례 항목 선택
-    xticklabel = ['강원중부해안', '강원중부내륙', '강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
+    xticklabel = ['강원중부해안', '강원중부내륙', '강원중부산지','강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
     xticklabels = st.multiselect('X축 레이블 선택', xticklabel, default=xticklabel)
     temp = ['평균 기온', '최저 기온', '최고 기온']
     labels = st.multiselect('범례 항목 선택', temp, default=temp)
@@ -56,7 +56,7 @@ def temp_chart():
 
     xticks = np.arange(len(selected_groups)) * 4 + 1.5
     ax.set_xticks(xticks)
-    ax.set_xticklabels(xticklabels, rotation=45, ha='right')
+    ax.set_xticklabels(xticklabels, rotation=0, ha='center')
 
     yticks = np.arange(-30, 50, 10)
     ax.set_yticks(yticks)

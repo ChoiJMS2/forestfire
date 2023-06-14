@@ -11,6 +11,7 @@ from streamlit_pandas_profiling import st_profile_report
 from utils import credentials
 from data.dataList import run_data_list
 from data.dataPreview import run_data_preview
+from data.appendix import run_appendix
 
 
 # 빅쿼리 클라이언트 객체 생성
@@ -25,18 +26,8 @@ def run_data2():
     with tab3:
         with st.expander("Report"):
             st.markdown("Report")
-def appendix():
-    st.subheader(":white_check_mark: Codebook")
-    st.markdown("**데이터 정의서**")
-    st.subheader(":white_check_mark: 부록")
-    option = st.selectbox(
-        "#### 첨부 목록",
-        ('첨부1 : 코드 목록', '첨부2 : 지점 번호', '첨부3 : 뭐 이런것들?'))
-    if option == '첨부2 : 지점 번호':
 
-        st.image("img/WSN.png")
-    else:
-        pass
+
 
 def run_data():
     st.sidebar.markdown("## SubMenu")
@@ -49,4 +40,4 @@ def run_data():
     elif Data_List == 'Data Preview':
         run_data_preview()
     elif Data_List == 'Appendix':
-        appendix()
+        run_appendix()

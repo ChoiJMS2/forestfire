@@ -6,6 +6,7 @@ from data.data_app import run_data
 from eda.eda_app import run_eda
 from stats.stats_app import run_stats
 from model.model_app import run_model
+from service.service_app import run_service
 def main():
     """
         Main function to run the Streamlit app.
@@ -16,7 +17,7 @@ def main():
     st.header(":fire: 산불 피해 최소화 :firefighter:")
     # Streamlit 앱 실행
     with st.sidebar:
-        selected = option_menu("Main Menu", ['Home', 'Data', 'EDA', 'STAT', 'MODELING'],
+        selected = option_menu("Main Menu", ['Home', 'Data', 'EDA', 'Stats', 'Modeling', 'Service'],
                                icons=['house', 'card-checklist', 'bar-chart', 'clipboard-data', 'gear'],
                                menu_icon="app-indicator", default_index=0, orientation = 'vertical', key='main_option',
                                styles={
@@ -33,10 +34,12 @@ def main():
         run_data()
     elif selected == 'EDA':
         run_eda()
-    elif selected == 'STAT':
+    elif selected == 'Stats':
         run_stats()
-    elif selected == 'MODELING':
+    elif selected == 'Modeling':
         run_model()
+    elif selected == 'Service':
+        run_service()
     else:
         print('error..')
 

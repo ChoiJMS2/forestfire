@@ -47,8 +47,8 @@ def temp_chart():
     selected_groups = [group for _, group in df2 if _.strip() in xticklabels]
 
     for i, group in enumerate(selected_groups):
-        data = [group["avgTa"], group["minTa"], group["maxTa"]]
-        box = ax.boxplot(data, patch_artist=True, positions=[i * 4 + 1, i * 4 + 2, i * 4 + 3], widths=box_width,
+        data = [group[column_mapping[label]] for label in labels]
+        box = ax.boxplot(data, patch_artist=True, positions=[i * 4 + j for j in range(len(labels))], widths=box_width,
                          boxprops={'linewidth': 2.8}, whiskerprops={'linewidth': 2.8})
 
         for patch, color in zip(box["boxes"], colors):

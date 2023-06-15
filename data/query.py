@@ -7,7 +7,7 @@ from utils import credentials
 client = bigquery.Client(credentials=credentials, project=credentials.project_id)
 @st.cache_data(ttl=600)
 def run_query(cols,dataset_id,table_id):
-    st.write("Load DataFrame")
+    st.subheader("Load Data")
     # 쿼리 작성
     sql = f"""
     SELECT {cols}

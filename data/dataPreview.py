@@ -61,8 +61,16 @@ def run_data_preview():
 
         with col2:
             st.title("📣 Describe")
+            # IMPORTANT: Cache the conversion to prevent computation on every rerun
+            csv = combined_df.to_csv().encode('cp949')
+            st.download_button(
+                label="Download data as CSV",
+                data=csv,
+                file_name=f'{tablenames}.csv',
+                mime='text/csv',
+            )
+            st.dataframe(combined_df.describe(), height=350, width=650)
             st.write("*Appendix 메뉴의 Codebook 참고")
-    #        st.dataframe(dataframe.describe(), height=350, width=650)
     with tab2:
         if tablenames:
             dataset_id = dataset_list

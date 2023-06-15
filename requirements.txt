@@ -30,3 +30,5 @@ jupyterlab
 google-cloud-bigquery==3.11.1
 google-cloud-bigquery[pandas]
 googlemaps
+
+streamlit_player

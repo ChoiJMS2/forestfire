@@ -12,10 +12,6 @@ from data.map_data import map_loadData
 
 import folium
 
-def run_chart1():
-    temp_chart()
-def run_chart2():
-    run_map()
 def run_chart3():
     forestfire_occurs, weather_stations, gangwon_code, gangwon_UMD = map_loadData()
     st.subheader("forestfire_occurs")
@@ -34,10 +30,10 @@ def run_eda():
     eda = st.sidebar.radio('submenu',['Temperature by region', 'Damage Map', 'Chart3', 'Chart4'], label_visibility='collapsed')
     if eda == 'Temperature by region':
         st.markdown("## Temperature by region")
-        run_chart1()
+        temp_chart()
     elif eda == 'Damage Map':
         st.markdown("## Damage Map")
-        run_chart2()
+        run_map()
     elif eda == 'Chart3':
         st.markdown("## Chart3")
         st.warning("please EDA")
@@ -46,3 +42,6 @@ def run_eda():
         st.markdown("## Chart4")
         st.warning("please EDA")
         run_chart4()
+
+if __name__ == '__main__':
+    run_eda()

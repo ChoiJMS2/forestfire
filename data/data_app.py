@@ -13,3 +13,8 @@ def run_data():
         run_show_data()
     elif Data_List == 'Appendix':
         run_appendix()
+
+
+# Streamlit 애플리케이션 실행
+if __name__ == '__main__':
+    run_data()

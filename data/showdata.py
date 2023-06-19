@@ -2,7 +2,6 @@
 import pandas as pd
 import streamlit as st
 from google.cloud import bigquery
-import pandas_profiling
 from streamlit_pandas_profiling import st_profile_report
 
 from data.query import run_query
@@ -114,8 +113,7 @@ def run_show_data():
                         label="Download data as CSV",
                         data=csv,
                         file_name=f'{tablenames}.csv',
-                        mime='text/csv',
-                    )
+                        mime='text/csv')
                 with st.expander("Report"):
                     pr = combined_df.profile_report()
                     st_profile_report(pr)

@@ -6,29 +6,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-
-def temp_chart():
+def run_humidity():
     # 빅쿼리 클라이언트 객체 생성
     client = bigquery.Client(credentials=credentials, project=credentials.project_id)
 
     query = """
-            SELECT *
-            FROM `forestfire-389107.Analysis_Data.Analysis_Data`
-            """
+                SELECT *
+                FROM `forestfire-389107.Analysis_Data.Analysis_Data`
+                """
 
-    df2 = client.query(query).to_dataframe()
-    df2 = df2.groupby('w_regions')
+    df = client.query(query).to_dataframe()
+    df = df.groupby('w_regions')
 
     # x축 레이블과 범례 항목 선택
-    xticklabel = ['강원중부해안', '강원중부내륙', '강원중부산지','강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
+    xticklabel = ['강원중부해안', '강원중부내륙', '강원중부산지', '강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
     xticklabels = st.multiselect('지역 선택', xticklabel, default=xticklabel)
-    temp = ['평균 기온', '최저 기온', '최고 기온']
-    labels = st.multiselect('관찰 항목 선택', temp, default=temp)
+    humidity = ['평균 상대습도', '최저 상대습도', '실효습도']
+    labels = st.multiselect('관찰 항목 선택', humidity, default=humidity)
 
     column_mapping = {
-        '평균 기온': 'avgTa',
-        '최저 기온': 'minTa',
-        '최고 기온': 'maxTa'
+        '평균 상대습도': 'avgRhm',
+        '최저 상대습도': 'minRhm',
+        '실효습도': 'effRhm'
     }
 
     plt.style.use('default')
@@ -43,7 +42,7 @@ def temp_chart():
     box_width = 0.8  # 박스의 너비 설정
 
     # 선택된 항목들로 데이터 그룹화
-    selected_groups = [group for _, group in df2 if _.strip() in xticklabels]
+    selected_groups = [group for _, group in df if _.strip() in xticklabels]
 
     for i, group in enumerate(selected_groups):
         data = [group[column_mapping[label]] for label in labels]
@@ -57,19 +56,19 @@ def temp_chart():
     ax.set_xticks(xticks)
     ax.set_xticklabels(xticklabels, rotation=0, ha='center')
 
-    yticks = np.arange(-30, 50, 10)
+    yticks = np.arange(0, 110, 10)
     ax.set_yticks(yticks)
 
     legend_patches = [mpatches.Patch(color=color, label=label) for color, label in zip(colors, labels)]
     ax.legend(handles=legend_patches, loc='lower center', bbox_to_anchor=(0.5, -0.2), fontsize=8.5,
               ncol=len(selected_groups))
 
-    ax.set_title('9개 지역별 기온 데이터', fontweight='bold')
-    # ax.set_xlabel('9개 지역별 기온 데이터', fontweight='bold')
-    ax.set_ylabel('온도 (℃)')
+    ax.set_title('9개 지역별 습도 데이터', fontweight='bold')
+    ax.set_ylabel('습도 (%)')
     plt.subplots_adjust(left=0.1, right=0.85, bottom=0.1, top=0.9)
 
     st.pyplot(fig)
 
+
 if __name__ == "__main__":
-    temp_chart()
+    run_humidity()

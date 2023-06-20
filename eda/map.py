@@ -206,59 +206,60 @@ def run_arrange():
         st_folium(map)
 
 def run_point():
-    pre_forestfire_occurs, gdf = run_feature()
-    # 지도 생성
-    map = folium.Map(location=[37.55, 128], zoom_start=8)
-
-    # 마커 그룹화
-    # marker_cluster = MarkerCluster().add_to(map)
-
-    # 데이터프레임의 각 행을 반복하며 마커 추가
-    for index, row in pre_forestfire_occurs.iterrows():
-        popup = folium.Popup(row['adres'], max_width=300)
-        folium.CircleMarker(
-            location=[row['latitude'], row['longitude']],
-            radius=4,
-            popup=popup,
-            icon=folium.Icon(color='red', icon='info-sign'),
-            color='red'
-        ).add_to(map)
-
-    region_colors = {
-        '강원북부내륙': 'blue',
-        '강원중부내륙': 'brown',
-        '강원남부내륙': 'green',
-        '강원북부산지': 'orange',
-        '강원중부산지': 'purple',
-        '강원남부산지': 'black',
-        '강원북부해안': 'gray',
-        '강원중부해안': 'red',
-        '강원남부해안': 'magenta'
-    }
-
-    # Add the regions to the map with different colors
-    folium.GeoJson('강원북부내륙',
-                   style_function=lambda feature: {'fillColor': region_colors['강원북부내륙'], 'color': 'blue'}).add_to(map)
-    folium.GeoJson('강원중부내륙',
-                   style_function=lambda feature: {'fillColor': region_colors['강원중부내륙'], 'color': 'brown'}).add_to(map)
-    folium.GeoJson('강원남부내륙',
-                   style_function=lambda feature: {'fillColor': region_colors['강원남부내륙'], 'color': 'green'}).add_to(map)
-    folium.GeoJson('강원북부해안',
-                   style_function=lambda feature: {'fillColor': region_colors['강원북부해안'], 'color': 'gray'}).add_to(map)
-    folium.GeoJson('강원중부해안',
-                   style_function=lambda feature: {'fillColor': region_colors['강원중부해안'], 'color': 'red'}).add_to(map)
-    folium.GeoJson('강원남부해안',
-                   style_function=lambda feature: {'fillColor': region_colors['강원남부해안'], 'color': 'magenta'}).add_to(
-        map)
-    folium.GeoJson('강원남부산지',
-                   style_function=lambda feature: {'fillColor': region_colors['강원남부산지'], 'color': 'black'}).add_to(map)
-    folium.GeoJson('강원북부산지',
-                   style_function=lambda feature: {'fillColor': region_colors['강원북부산지'], 'color': 'orange'}).add_to(map)
-    folium.GeoJson('강원중부산지',
-                   style_function=lambda feature: {'fillColor': region_colors['강원중부산지'], 'color': 'purple'}).add_to(map)
-
-    # 지도 표시
-    st_folium(map)
+    pass
+    # pre_forestfire_occurs, gdf = run_feature()
+    # # 지도 생성
+    # map = folium.Map(location=[37.55, 128], zoom_start=8)
+    #
+    # # 마커 그룹화
+    # # marker_cluster = MarkerCluster().add_to(map)
+    #
+    # # 데이터프레임의 각 행을 반복하며 마커 추가
+    # for index, row in pre_forestfire_occurs.iterrows():
+    #     popup = folium.Popup(row['adres'], max_width=300)
+    #     folium.CircleMarker(
+    #         location=[row['latitude'], row['longitude']],
+    #         radius=4,
+    #         popup=popup,
+    #         icon=folium.Icon(color='red', icon='info-sign'),
+    #         color='red'
+    #     ).add_to(map)
+    #
+    # region_colors = {
+    #     '강원북부내륙': 'blue',
+    #     '강원중부내륙': 'brown',
+    #     '강원남부내륙': 'green',
+    #     '강원북부산지': 'orange',
+    #     '강원중부산지': 'purple',
+    #     '강원남부산지': 'black',
+    #     '강원북부해안': 'gray',
+    #     '강원중부해안': 'red',
+    #     '강원남부해안': 'magenta'
+    # }
+    #
+    # # Add the regions to the map with different colors
+    # folium.GeoJson('강원북부내륙',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원북부내륙'], 'color': 'blue'}).add_to(map)
+    # folium.GeoJson('강원중부내륙',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원중부내륙'], 'color': 'brown'}).add_to(map)
+    # folium.GeoJson('강원남부내륙',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원남부내륙'], 'color': 'green'}).add_to(map)
+    # folium.GeoJson('강원북부해안',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원북부해안'], 'color': 'gray'}).add_to(map)
+    # folium.GeoJson('강원중부해안',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원중부해안'], 'color': 'red'}).add_to(map)
+    # folium.GeoJson('강원남부해안',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원남부해안'], 'color': 'magenta'}).add_to(
+    #     map)
+    # folium.GeoJson('강원남부산지',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원남부산지'], 'color': 'black'}).add_to(map)
+    # folium.GeoJson('강원북부산지',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원북부산지'], 'color': 'orange'}).add_to(map)
+    # folium.GeoJson('강원중부산지',
+    #                style_function=lambda feature: {'fillColor': region_colors['강원중부산지'], 'color': 'purple'}).add_to(map)
+    #
+    # # 지도 표시
+    # st_folium(map)
 
 def run_map():
     tab1, tab2, tab3, tab4 = st.tabs(["산불 피해 건수", "산불 피해 범위", "산불 피해 금액", "산불 발생 위치"])

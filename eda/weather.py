@@ -4,7 +4,6 @@ from google.cloud import bigquery
 from utils import credentials
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 
 def analysis():
     # 빅쿼리 클라이언트 객체 생성
@@ -67,7 +66,7 @@ def weather_chart():
             yticks = np.arange(-30, 50, 10)
             ax.set_yticks(yticks)
 
-            ax.set_title('9개 지역별 {} 데이터'.format(selected_label), fontweight='bold')
+            ax.set_title('지역별 {} '.format(selected_label), fontweight='bold')
             ax.set_ylabel('온도 (℃)')
             plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9)
 
@@ -104,7 +103,7 @@ def weather_chart():
             yticks = np.arange(0, 110, 10)
             ax.set_yticks(yticks)
 
-            ax.set_title('9개 지역별 {} 데이터'.format(selected_label2), fontweight='bold')
+            ax.set_title('지역별 {}'.format(selected_label2), fontweight='bold')
             ax.set_ylabel('습도 (%)')
             plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9)
 
@@ -159,7 +158,7 @@ def weather_chart():
                     plt.scatter([i + 1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region) + 1), region)
-                plt.title(f'9개 지역별 {selected_label3}', fontweight='bold')
+                plt.title(f'지역별 {selected_label3}', fontweight='bold')
                 plt.ylabel('단위 (일)')
 
                 st.pyplot(fig4)
@@ -177,7 +176,7 @@ def weather_chart():
                         plt.scatter([i+1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region)+1), region)
-                plt.title(f'9개 지역별 {selected_label3}', fontweight='bold')
+                plt.title(f'지역별 {selected_label3}', fontweight='bold')
                 plt.ylabel('강수량 (mm)')
 
                 st.pyplot(fig3)

@@ -14,10 +14,6 @@ from data.load_data import load_data
 def run_feature():
     forestfire_occurs, gangwon_UMD, gangwon_code, pre_forestfire_occurs = load_data()
 
-    # 데이터 기초 수정
-    forestfire_occurs = forestfire_occurs.dropna()
-    forestfire_occurs = forestfire_occurs[~forestfire_occurs['adres'].str.contains("신북면 발산리")]
-
     gangwon_code["code"] = gangwon_code["code"].astype(str).str[:-2]
     gangwon_code['code'] = gangwon_code['code'].drop_duplicates()
     gangwon_code = gangwon_code[~gangwon_code["code"].isna()].rename(columns={"code": "EMD_CD"})

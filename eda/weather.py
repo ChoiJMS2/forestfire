@@ -51,7 +51,7 @@ def weather_chart():
     # 그래프 layout 설정
     plt.style.use('ggplot')
     plt.rcParams['figure.figsize'] = (20, 12)
-    plt.rcParams['font.size'] = 14
+    plt.rcParams['font.size'] = 16
     # plt.rcParams['font.family'] = font_Names
     plt.rcParams['axes.unicode_minus'] = False
 
@@ -154,7 +154,7 @@ def weather_chart():
                     ax.bar(x[i] + width / 2, counts[1], width, label=legend_labels[1], color=colors[1])
 
                     for j, count in enumerate(counts):
-                        ax.text(x[i] + width * (j - 0.5), count + 2, str(count), ha='center', va='bottom', fontsize=11)
+                        ax.text(x[i] + width * (j - 0.5), count + 2, str(count), ha='center', va='bottom')
 
                 ax.set_xticks(x)
                 ax.set_xticklabels(region)

@@ -146,7 +146,7 @@ def weather_chart():
                 ax.set_title('지역별 강수 여부', fontproperties=prop)
 
                 legend = ax.legend(handles=[ax.patches[0], ax.patches[len(region)]], labels=legend_labels,
-                                   title='강수 여부', fontproperties=prop,
+                                   title='강수 여부',
                                    loc='upper center', ncol=2)
 
                 legend.set_bbox_to_anchor((0.5, -0.15))
@@ -159,10 +159,10 @@ def weather_chart():
                 fig4, ax = plt.subplots()
                 for i, group in enumerate(df_groups):
                     data = group["noRn"]
-                    plt.scatter([i + 1] * len(data), data, s=100, label=region, fontproperties=prop)
+                    plt.scatter([i + 1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region) + 1), region)
-                plt.title(f'지역별 {selected_label3}', fontweight='bold', fontproperties=prop)
+                plt.title(f'지역별 {selected_label3}', fontproperties=prop)
                 plt.ylabel('단위 (일)', fontproperties=prop)
 
                 st.pyplot(fig4)
@@ -177,7 +177,7 @@ def weather_chart():
                 for i, group in enumerate(df_groups):
                     if selected_label3 in column_mapping3 and column_mapping3[selected_label3] in group.columns:
                         data = group[column_mapping3[selected_label3]]
-                        plt.scatter([i+1] * len(data), data, s=100, label=region, fontproperties=prop)
+                        plt.scatter([i+1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region)+1), region)
                 plt.title(f'지역별 {selected_label3}', fontproperties=prop)

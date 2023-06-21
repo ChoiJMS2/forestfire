@@ -53,9 +53,9 @@ def load_data():
     gangwon_code = get_dataframe_from_bigquery("Raw_Data", "gangwon_code").sort_values(["code"])
 
     pre_forestfire_occurs = get_dataframe_from_bigquery("PreProcessing_Data", "forestfire_occurs").sort_values(["objt_id", "occu_date"])
-    # pre_weather_days = get_dataframe_from_bigquery("PreProcessing_Data", "weather_days").sort_values(["stnId", "tm"])
+    pre_weather_days = get_dataframe_from_bigquery("PreProcessing_Data", "weather_days").sort_values(["stnId", "tm"])
 
-    return forestfire_occurs, gangwon_UMD, gangwon_code, pre_forestfire_occurs
+    return forestfire_occurs, gangwon_UMD, gangwon_code, pre_forestfire_occurs, pre_weather_days
 
 if __name__ == '__main__':
     load_data()

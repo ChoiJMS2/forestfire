@@ -26,7 +26,7 @@ def analysis():
 
     return df
 
-@st.cache(ttl=600)
+@st.cache_data
 def font_set():
     # matplotlib 한글 폰트 설정
     font_dirs = [os.getcwd() + '/nanum']
@@ -51,7 +51,7 @@ def weather_chart():
     # 그래프 layout 설정
     plt.style.use('ggplot')
     plt.rcParams['figure.figsize'] = (20, 12)
-    plt.rcParams['font.size'] = 16
+    plt.rcParams['font.size'] = 18
     # plt.rcParams['font.family'] = font_Names
     plt.rcParams['axes.unicode_minus'] = False
 

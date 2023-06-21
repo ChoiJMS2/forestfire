@@ -68,7 +68,15 @@ def run_twoMeans():
         st.warning("Two Columns are must be different")
 
 def run_regression():
-    pass
+    select_region = st.selectbox('지역 선택', ['강원북부내륙', '강원중부내륙', '강원남부내륙', '강원북부산지', '강원중부산지', '강원남부산지', '강원북부해안', '강원중부해안', '강원남부해안'])
+    mapping = {
+        '강원북부내륙': 1, '강원북부산지': 2, '강원북부해안': 3,
+        '강원중부내륙': 4, '강원중부산지': 5, '강원중부해안': 6,
+        '강원남부내륙': 7, '강원남부산지': 8, '강원남부해안': 9
+    }
+    if select_region in mapping:
+        st.image("img/eda_img/region_stats" + str(mapping[select_region]) + ".png")
+
 
 def run_stats():
     st.sidebar.markdown("## SubMenu")
@@ -77,5 +85,4 @@ def run_stats():
         st.markdown("## Two Means")
         run_twoMeans()
     elif submenu == 'Logistic Regression':
-        st.warning("please Analysis")
         run_regression()

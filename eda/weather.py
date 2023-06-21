@@ -35,7 +35,7 @@ def weather_chart():
     plt.style.use('ggplot')
     plt.rcParams['figure.figsize'] = (15, 8)
     plt.rcParams['font.size'] = 14
-    plt.rcParams['font.family'] = 'Malgun Gothic'
+    plt.rcParams['font.family'] = "NanumGothicBold"
     plt.rcParams['axes.unicode_minus'] = False
 
     tab1, tab2, tab3, tab4 = st.tabs(['기온', '습도', '강수량', '풍속'])
@@ -146,7 +146,7 @@ def weather_chart():
                 ax.set_title('지역별 강수 여부', fontproperties=prop)
 
                 legend = ax.legend(handles=[ax.patches[0], ax.patches[len(region)]], labels=legend_labels,
-                                   title='강수 여부',
+                                   title='강수 여부', fontproperties=prop,
                                    loc='upper center', ncol=2)
 
                 legend.set_bbox_to_anchor((0.5, -0.15))
@@ -180,6 +180,7 @@ def weather_chart():
                         plt.scatter([i+1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region)+1), region)
+                plt.xlabel(region, fontproperties=prop)
                 plt.title(f'지역별 {selected_label3}', fontproperties=prop)
                 plt.ylabel('강수량 (mm)', fontproperties=prop)
 

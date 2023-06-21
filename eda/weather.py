@@ -36,9 +36,7 @@ def weather_chart():
 
     # matplotlib 한글 폰트 설정
     font_dirs = [os.getcwd() + '/nanum']
-    st.write(font_dirs)
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
-    st.write(font_files)
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
     fm._load_fontmanager(try_read_cache=False)
@@ -49,8 +47,8 @@ def weather_chart():
 
     # 그래프 layout 설정
     plt.style.use('ggplot')
-    plt.rcParams['figure.figsize'] = (15, 8)
-    plt.rcParams['font.size'] = 14
+    plt.rcParams['figure.figsize'] = (20, 12)
+    plt.rcParams['font.size'] = 12
     # plt.rcParams['font.family'] = font_Names
     plt.rcParams['axes.unicode_minus'] = False
 
@@ -144,7 +142,7 @@ def weather_chart():
                 x = range(len(region))
                 colors = ['steelblue', 'darkorange']
 
-                legend_labels = ['0', '1']
+                legend_labels = ['맑음', '비']
 
                 for i, df in enumerate(df_groups):
                     counts = df['Rntf'].value_counts()

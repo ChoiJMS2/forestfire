@@ -10,16 +10,6 @@ from matplotlib import font_manager as fm
 def unique(lst):
     x = np.array(lst)
     return np.unique(x)
-@st.cache_data
-def fontRegistered():
-    font_dirs = [os.getcwd() + '/nanum']
-    font_files = fm.findSystemFonts(fontpaths=font_dirs)
-
-    for font_file in font_files:
-        fm.fontManager.addfont(font_file)
-    fm._load_fontmanager(try_read_cache=False)
-
-
 
 def analysis():
     # 빅쿼리 클라이언트 객체 생성
@@ -43,17 +33,25 @@ def weather_chart():
     region = ['강원중부해안', '강원중부내륙', '강원중부산지','강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
     # 선택된 항목들로 데이터 그룹화
     df_groups = [group for _, group in df if _.strip() in region]
+
     # matplotlib 한글 폰트 설정
-    fontRegistered()
+    font_dirs = [os.getcwd() + '/nanum']
+    st.write(font_dirs)
+    font_files = fm.findSystemFonts(fontpaths=font_dirs)
+    st.write(font_files)
+    for font_file in font_files:
+        fm.fontManager.addfont(font_file)
+    fm._load_fontmanager(try_read_cache=False)
+
     font_Names = [f.name for f in fm.fontManager.ttflist]
-    print(font_Names)
-    # plt.rc('font', family = font_Names)
+    fontnames = st.selectbox('폰트', unique(font_Names))
+    plt.rc('font', family=fontnames)
 
     # 그래프 layout 설정
     plt.style.use('ggplot')
     plt.rcParams['figure.figsize'] = (15, 8)
     plt.rcParams['font.size'] = 14
-    plt.rcParams['font.family'] = font_Names
+    # plt.rcParams['font.family'] = font_Names
     plt.rcParams['axes.unicode_minus'] = False
 
     tab1, tab2, tab3, tab4 = st.tabs(['기온', '습도', '강수량', '풍속'])

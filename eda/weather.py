@@ -35,7 +35,7 @@ def weather_chart():
     plt.style.use('ggplot')
     plt.rcParams['figure.figsize'] = (15, 8)
     plt.rcParams['font.size'] = 14
-    plt.rcParams['font.family'] = "NanumGothicBold"
+    plt.rcParams['font.family'] = prop
     plt.rcParams['axes.unicode_minus'] = False
 
     tab1, tab2, tab3, tab4 = st.tabs(['기온', '습도', '강수량', '풍속'])
@@ -180,7 +180,6 @@ def weather_chart():
                         plt.scatter([i+1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region)+1), region)
-                plt.xlabel(region, fontproperties=prop)
                 plt.title(f'지역별 {selected_label3}', fontproperties=prop)
                 plt.ylabel('강수량 (mm)', fontproperties=prop)
 

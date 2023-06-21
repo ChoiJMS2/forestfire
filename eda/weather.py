@@ -26,20 +26,23 @@ def analysis():
 
     return df
 
-def weather_chart():
-    df = analysis()
-
-    # 그래프 설정
-    region = ['강원중부해안', '강원중부내륙', '강원중부산지','강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
-    # 선택된 항목들로 데이터 그룹화
-    df_groups = [group for _, group in df if _.strip() in region]
-
+@st.cache(ttl=600)
+def font_set():
     # matplotlib 한글 폰트 설정
     font_dirs = [os.getcwd() + '/nanum']
     font_files = fm.findSystemFonts(fontpaths=font_dirs)
     for font_file in font_files:
         fm.fontManager.addfont(font_file)
     fm._load_fontmanager(try_read_cache=False)
+
+def weather_chart():
+    df = analysis()
+    font_set()
+
+    # 그래프 설정
+    region = ['강원중부해안', '강원중부내륙', '강원중부산지','강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
+    # 선택된 항목들로 데이터 그룹화
+    df_groups = [group for _, group in df if _.strip() in region]
 
     font_Names = [f.name for f in fm.fontManager.ttflist]
     # fontnames = st.selectbox('폰트', unique(font_Names))
@@ -48,7 +51,7 @@ def weather_chart():
     # 그래프 layout 설정
     plt.style.use('ggplot')
     plt.rcParams['figure.figsize'] = (20, 12)
-    plt.rcParams['font.size'] = 12
+    plt.rcParams['font.size'] = 14
     # plt.rcParams['font.family'] = font_Names
     plt.rcParams['axes.unicode_minus'] = False
 
@@ -134,7 +137,7 @@ def weather_chart():
         buf, col3, buf = st.columns([1, 6, 1])
         with col3:
             if selected_label3 == '강수 여부':
-                plt.rcParams['figure.figsize'] = (10, 5)
+                plt.rcParams['figure.figsize'] = (20, 12)
 
                 fig5, ax = plt.subplots()
 
@@ -151,7 +154,7 @@ def weather_chart():
                     ax.bar(x[i] + width / 2, counts[1], width, label=legend_labels[1], color=colors[1])
 
                     for j, count in enumerate(counts):
-                        ax.text(x[i] + width * (j - 0.5), count + 2, str(count), ha='center', va='bottom')
+                        ax.text(x[i] + width * (j - 0.5), count + 2, str(count), ha='center', va='bottom', fontsize=11)
 
                 ax.set_xticks(x)
                 ax.set_xticklabels(region)

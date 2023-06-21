@@ -33,3 +33,4 @@ googlemaps
 streamlit_folium==0.12.0
 
 streamlit_player
+os

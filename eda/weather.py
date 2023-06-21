@@ -6,8 +6,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from matplotlib import font_manager as fm
-fpath = os.path.join(os.getcwd(), "font/NanumGothicBold.otf")
-prop = fm.FontProperties(fname=fpath)
+
+def unique(lst):
+    x = np.array(lst)
+    return np.unique(x)
+@st.cache_data
+def fontRegistered():
+    font_dirs = [os.getcwd() + '/nanum']
+    font_files = fm.findSystemFonts(fontpaths=font_dirs)
+
+    for font_file in font_files:
+        fm.fontManager.addfont(font_file)
+    fm._load_fontmanager(try_read_cache=False)
+
+
 
 def analysis():
     # 빅쿼리 클라이언트 객체 생성
@@ -31,11 +43,17 @@ def weather_chart():
     region = ['강원중부해안', '강원중부내륙', '강원중부산지','강원북부해안', '강원북부내륙', '강원북부산지', '강원남부해안', '강원남부내륙', '강원남부산지']
     # 선택된 항목들로 데이터 그룹화
     df_groups = [group for _, group in df if _.strip() in region]
+    # matplotlib 한글 폰트 설정
+    fontRegistered()
+    font_Names = [f.name for f in fm.fontManager.ttflist]
+    print(font_Names)
+    # plt.rc('font', family = font_Names)
 
+    # 그래프 layout 설정
     plt.style.use('ggplot')
     plt.rcParams['figure.figsize'] = (15, 8)
     plt.rcParams['font.size'] = 14
-    plt.rcParams['font.family'] = prop
+    plt.rcParams['font.family'] = font_Names
     plt.rcParams['axes.unicode_minus'] = False
 
     tab1, tab2, tab3, tab4 = st.tabs(['기온', '습도', '강수량', '풍속'])
@@ -65,13 +83,13 @@ def weather_chart():
 
             xticks = np.arange(len(df_groups)) * 2
             ax.set_xticks(xticks)  # positions 값으로 x축 설정
-            ax.set_xticklabels(region, rotation=0, ha='center', fontproperties=prop)
+            ax.set_xticklabels(region, rotation=0, ha='center')
 
             yticks = np.arange(-30, 50, 10)
             ax.set_yticks(yticks)
 
-            ax.set_title('지역별 {} '.format(selected_label), fontproperties=prop)
-            ax.set_ylabel('온도 (℃)', fontproperties=prop)
+            ax.set_title('지역별 {} '.format(selected_label))
+            ax.set_ylabel('온도 (℃)')
             plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9)
 
             st.pyplot(fig1)
@@ -102,13 +120,13 @@ def weather_chart():
 
             xticks = np.arange(len(df_groups)) * 2
             ax.set_xticks(xticks)  # positions 값으로 x축 설정
-            ax.set_xticklabels(region, rotation=0, ha='center', fontproperties=prop)
+            ax.set_xticklabels(region, rotation=0, ha='center')
 
             yticks = np.arange(0, 110, 10)
             ax.set_yticks(yticks)
 
-            ax.set_title('지역별 {}'.format(selected_label2), fontproperties=prop)
-            ax.set_ylabel('습도 (%)', fontproperties=prop)
+            ax.set_title('지역별 {}'.format(selected_label2))
+            ax.set_ylabel('습도 (%)')
             plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9)
 
             st.pyplot(fig2)
@@ -137,16 +155,16 @@ def weather_chart():
                     ax.bar(x[i] + width / 2, counts[1], width, label=legend_labels[1], color=colors[1])
 
                     for j, count in enumerate(counts):
-                        ax.text(x[i] + width * (j - 0.5), count + 2, str(count), ha='center', va='bottom', fontproperties=prop)
+                        ax.text(x[i] + width * (j - 0.5), count + 2, str(count), ha='center', va='bottom')
 
                 ax.set_xticks(x)
-                ax.set_xticklabels(region,fontproperties=prop)
+                ax.set_xticklabels(region)
 
-                ax.set_ylabel('단위 (건)', fontproperties=prop)
-                ax.set_title('지역별 강수 여부', fontproperties=prop)
+                ax.set_ylabel('단위 (건)')
+                ax.set_title('지역별 강수 여부')
 
                 legend = ax.legend(handles=[ax.patches[0], ax.patches[len(region)]], labels=legend_labels,
-                                   title='강수 여부', fontproperties=prop,
+                                   title='강수 여부',
                                    loc='upper center', ncol=2)
 
                 legend.set_bbox_to_anchor((0.5, -0.15))
@@ -162,8 +180,8 @@ def weather_chart():
                     plt.scatter([i + 1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region) + 1), region)
-                plt.title(f'지역별 {selected_label3}', fontproperties=prop)
-                plt.ylabel('단위 (일)', fontproperties=prop)
+                plt.title(f'지역별 {selected_label3}')
+                plt.ylabel('단위 (일)')
 
                 st.pyplot(fig4)
             else:
@@ -180,8 +198,8 @@ def weather_chart():
                         plt.scatter([i+1] * len(data), data, s=100, label=region)
 
                 plt.xticks(range(1, len(region)+1), region)
-                plt.title(f'지역별 {selected_label3}', fontproperties=prop)
-                plt.ylabel('강수량 (mm)', fontproperties=prop)
+                plt.title(f'지역별 {selected_label3}')
+                plt.ylabel('강수량 (mm)')
 
                 st.pyplot(fig3)
 
@@ -211,7 +229,7 @@ def weather_chart():
 
             xticks = np.arange(len(df_groups)) * 2
             ax.set_xticks(xticks)  # positions 값으로 x축 설정
-            ax.set_xticklabels(region, rotation=0, ha='center', fontproperties=prop)
+            ax.set_xticklabels(region, rotation=0, ha='center')
 
             if selected_label4 == '평균 풍속':
                 yticks = np.arange(0, 20, 5)
@@ -221,8 +239,8 @@ def weather_chart():
                 yticks = np.arange(0, 30, 5)
             ax.set_yticks(yticks)
 
-            ax.set_title('지역별 {}'.format(selected_label4), fontproperties=prop)
-            ax.set_ylabel('습도 (%)',fontproperties=prop)
+            ax.set_title('지역별 {}'.format(selected_label4))
+            ax.set_ylabel('습도 (%)')
             plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9)
 
             st.pyplot(fig6)

@@ -44,8 +44,8 @@ def weather_chart():
     fm._load_fontmanager(try_read_cache=False)
 
     font_Names = [f.name for f in fm.fontManager.ttflist]
-    fontnames = st.selectbox('폰트', unique(font_Names))
-    plt.rc('font', family=fontnames)
+    # fontnames = st.selectbox('폰트', unique(font_Names))
+    plt.rc('font', family=font_Names)
 
     # 그래프 layout 설정
     plt.style.use('ggplot')

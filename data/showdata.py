@@ -114,9 +114,9 @@ def run_show_data():
                         data=csv,
                         file_name=f'{tablenames}.csv',
                         mime='text/csv')
-                with st.expander("Report"):
-                    pr = combined_df.profile_report()
-                    st_profile_report(pr)
+                # with st.expander("Report"):
+                #     pr = combined_df.profile_report()
+                #     st_profile_report(pr)
 
             with col2:
                 st.subheader("📣 Describe")
